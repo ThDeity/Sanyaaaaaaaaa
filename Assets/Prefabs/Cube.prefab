@@ -421,7 +421,7 @@ MonoBehaviour:
   isSelected: 0
   _force: 15
   _offset: 0
-  arrow: {fileID: 2002617199321759639}
+  _arrow: {fileID: 2002617199321759639}
 --- !u!114 &1505777986979576089
 MonoBehaviour:
   m_ObjectHideFlags: 0

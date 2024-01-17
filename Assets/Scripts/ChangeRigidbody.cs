@@ -95,7 +95,27 @@ public class ChangeRigidbody : MonoBehaviour
             _body2D.GetComponent<Body>().isSelected = false;
         }
 
+        GameObject _object = _body2D.gameObject;
+        Instantiate(_body2D, _body2D.transform.position, Quaternion.identity);
+        Destroy(_object);
+
         _body = null; _body2D = null;
         _panel.SetActive(false);
+    }
+
+    public void DestroyObj()
+    {
+        if (_body2D != null)
+        {
+            Destroy(_body2D.gameObject);
+            _body2D = null;
+        }
+        else
+        {
+            Destroy(_body.gameObject);
+            _body = null;
+        }
+
+        ActivePanel(false);
     }
 }
