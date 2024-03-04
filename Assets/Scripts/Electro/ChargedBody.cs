@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class ChargedBody : MonoBehaviour
 {
-    public float Charge, k;
+    public float Charge, k, massa;
     [SerializeField] private float _forwardForce, _eForce;
     private Rigidbody2D _rg2D;
     private Transform _electricField;
@@ -19,8 +19,8 @@ public class ChargedBody : MonoBehaviour
 
         if (StaticVariables.IsEConst)
         {
-            _eForce = StaticVariables.EValue;
-            _rg2D.AddForce(_electricField.up * _eForce, ForceMode2D.Force);
+            _eForce = StaticVariables.EValue * Charge / massa;
+            _rg2D.AddForce(_electricField.up * _eForce * Time.deltaTime * Time.deltaTime, ForceMode2D.Force);
         }
         else
         {
