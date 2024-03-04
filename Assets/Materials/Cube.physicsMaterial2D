@@ -7,6 +7,5 @@ PhysicsMaterial2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Cube
-  friction: 0
-  friction: 2
+  friction: 1
   bounciness: 0

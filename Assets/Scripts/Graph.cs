@@ -3,8 +3,11 @@ public class Graph : MonoBehaviour
 {
     [Range(10, 100)]
     public int resolution = 10;
+    public float timeScale = 10f;
     private int currentResolution;
     private ParticleSystem.Particle[] points;
+    private Rigidbody2D _cube;
+
     private void CreatePoints()
     {
         currentResolution = resolution;
@@ -18,10 +21,13 @@ public class Graph : MonoBehaviour
             points[i].size = 0.1f;
         }
     }
+
     void Start()
     {
+        _cube = GameObject.Find("Cube").GetComponent<Rigidbody2D>();
+
         if (resolution < 10 || resolution > 100) 
-    {
+        {
             Debug.LogWarning("Разрешение графика вышло за границы, сброшено в минимум", this);
             resolution = 10;
         }
@@ -38,13 +44,13 @@ public class Graph : MonoBehaviour
     void Update()
     {
         if (currentResolution != resolution)
-        {
             CreatePoints();
-        }
+
         for (int i = 0; i < resolution; i++)
         {
             Vector3 p = points[i].position;
-            p.y = p.x;
+            p.y = _cube.velocity.magnitude;
+            //p.x = Time. / timeScale;
             points[i].position = p;
             Color c = points[i].color;
             c.g = p.y;

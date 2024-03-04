@@ -1,16 +1,37 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class StaticVariables : MonoBehaviour
 {
-    public static bool IsBodyChosen = false;
+    public static bool IsBodyChosen = false, IsEConst = false;
     public static ChangeRigidbody ChangeRigidbodyObj;
     public static GameObject ActiveBody;
     public static BodyTransform BodyTransform;
+    [SerializeField] private bool _isKinematic;
+    static bool isKinematic;
+    public static float EValue;
 
     public void Start()
     {
-        ChangeRigidbodyObj = FindObjectOfType<ChangeRigidbody>();
+        isKinematic = _isKinematic;
+
+        if (_isKinematic)
+            ChangeRigidbodyObj = FindObjectOfType<ChangeRigidbody>();
+
         BodyTransform = FindObjectOfType<BodyTransform>();
+    }
+
+    public void ChangeE(Dropdown dropdown)
+    {
+        IsEConst = dropdown.value == 0 ? false : true;
+        if (IsEConst)
+        {
+            ElectricFieldInfo.ElectricField.gameObject.SetActive(false);
+            InputField input = FindObjectOfType(typeof(InputField)) as InputField;
+            EValue = int.Parse(input.text.ToString());
+        }
+        else
+            ElectricFieldInfo.ElectricField.gameObject.SetActive(true);
     }
 
     public static void ChooseBody(GameObject body, bool active)
@@ -22,7 +43,7 @@ public class StaticVariables : MonoBehaviour
             IsBodyChosen = active;
         }
 
-        if (active)
+        if (active && isKinematic)
         {
             if (body.TryGetComponent(out Rigidbody rgb))
                 ChangeRigidbodyObj.GetRgb(rgb);
@@ -30,6 +51,8 @@ public class StaticVariables : MonoBehaviour
                 ChangeRigidbodyObj.GetRgb2D(body.GetComponent<Rigidbody2D>());
         }
 
-        ChangeRigidbodyObj.ActivePanel(active);
+
+        if (isKinematic)
+            ChangeRigidbodyObj.ActivePanel(active);
     }
 }
