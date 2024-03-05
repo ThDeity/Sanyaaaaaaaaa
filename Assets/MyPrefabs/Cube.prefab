@@ -419,6 +419,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isSelected: 0
+  isImpulsed: 1
   _force: 15
   _offset: 0
   _arrow: {fileID: 2002617199321759639}

@@ -17,4 +17,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Electro.unity
     guid: c38700015936ab44cbad48f1402c5c50
+  - enabled: 1
+    path: Assets/Scenes/Sanyaaaaaaaaaaa/Text1.unity
+    guid: cd61211e797062c45a62dbb764ace7e9
+  - enabled: 1
+    path: Assets/Scenes/Sanyaaaaaaaaaaa/Text2.unity
+    guid: 9f4700f939af5744a88901638c2e1f63
   m_configObjects: {}
